@@ -31,7 +31,8 @@ Constraints:
 1 <= s.length <= 500
 s consists of lowercase English letters.
 
-tag: string
+tag: string greedy
+note: should be note when i in border.
 */
 
 vector<int> partitionLabels(string s) {
