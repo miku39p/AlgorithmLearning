@@ -178,7 +178,8 @@ class TestRunner {
   }
 };
 
-TestRunner test_runner;
+// Global test runner instance (declared in header, defined in test_runner.cpp)
+extern TestRunner test_runner;
 
 // ===== Simple Test Macros =====
 // Usage: test_runner.addTest("name", EXPECT_EQ(expr1, expr2))

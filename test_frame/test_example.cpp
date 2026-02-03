@@ -21,6 +21,15 @@ bool getTrue() { return true; }
 
 bool getFalse() { return false; }
 
+// For gdb debugging - just call the functions to set breakpoints
+void gdb_run() {
+  cout << "calc(3,5) = " << calc(3, 5) << endl;
+  cout << "getNums() = ";
+  for (int n : getNums()) cout << n << " ";
+  cout << endl;
+}
+
+// For automated testing
 void registerTests() {
   // Simple comparison - now simplified!
   test_runner.addTest("calc(3,5)=8", EXPECT_EQ(calc(3, 5), 8));
