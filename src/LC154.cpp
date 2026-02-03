@@ -69,3 +69,9 @@ void registerTests() {
   test_runner.addTest("[2,2,2,0,1]=0", EXPECT_EQ(result2, 0));
   test_runner.addTest("[3,1]=1", EXPECT_EQ(result3, 1));
 }
+
+void gdb_run() {
+  vector<int> nums1 = {1, 3, 5};
+  int a = findMin(nums1);
+  std::cout << a << std::endl;
+}

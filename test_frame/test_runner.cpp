@@ -1,7 +1,5 @@
 #include "test.h"
 
-TestRunner test_runner;
-
 // Function to register tests - defined in user file
 void registerTests();
 

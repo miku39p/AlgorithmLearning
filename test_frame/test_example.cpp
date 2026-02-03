@@ -2,7 +2,7 @@
 #include "test.h"
 
 /*
-  a.cpp - Example file demonstrating automated testing
+Example file demonstrating automated testing
 */
 
 int calc(int x, int y) { return x + y; }

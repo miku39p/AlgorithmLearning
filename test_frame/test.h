@@ -178,19 +178,19 @@ class TestRunner {
   }
 };
 
-extern TestRunner test_runner;
+TestRunner test_runner;
 
 // ===== Simple Test Macros =====
 // Usage: test_runner.addTest("name", EXPECT_EQ(expr1, expr2))
 
 #define EXPECT_EQ(actual, expected) \
-  [&]() { test_runner.assertEqual(actual, expected); }
+  [=]() { test_runner.assertEqual(actual, expected); }
 
 #define EXPECT_TRUE(condition) \
-  [&]() { test_runner.assertTrue(condition, #condition); }
+  [=]() { test_runner.assertTrue(condition, #condition); }
 
 #define EXPECT_FALSE(condition) \
-  [&]() { test_runner.assertFalse(condition, #condition); }
+  [=]() { test_runner.assertFalse(condition, #condition); }
 
 #define EXPECT_SAME(actual, expected) \
-  [&]() { test_runner.assertSameContent(actual, expected); }
+  [=]() { test_runner.assertSameContent(actual, expected); }
