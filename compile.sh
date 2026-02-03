@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ ${1} -g -o build/main
+g++ ${1} test_runner.cpp -g -o build/main

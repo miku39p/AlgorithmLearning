@@ -1,4 +1,5 @@
 #include "basic.h"
+#include "test.h"
 /*
 You are given a string s. We want to partition the string into as many parts as
 possible so that each letter appears in at most one part. For example, the
@@ -62,7 +63,10 @@ vector<int> partitionLabels(string s) {
   return result;
 }
 
-int main() {
-  partitionLabels("ababcbacadefegdehijhklij");
-  return 0;
+void registerTests() {
+  test_runner.addTest(
+      "test1", EXPECT_EQ(partitionLabels("ababcbacadefegdehijhklij"),
+                         vector<int>({9, 7, 8}))
+
+  );
 }

@@ -1,4 +1,5 @@
 #include "basic.h"
+#include "test.h"
 /*
 Given an array nums with n integers, your task is to check if it could become
 non-decreasing by modifying at most one element.
@@ -21,6 +22,7 @@ Explanation: You cannot get a non-decreasing array by modifying at most one
 element.
 
 
+
 Constraints:
 
 n == nums.length
@@ -33,50 +35,23 @@ note:
 导致了不等价
 */
 
-bool checkPossibility_beetter_copy(vector<int>& nums) {
-  int count = 0;
-
-  for (int i = 1; i < nums.size(); i++) {
-    if (nums[i] < nums[i - 1]) {
-      count++;
-      if (count > 1) return false;
-
-      if (i == 1 || nums[i] >= nums[i - 2]) {
-        nums[i - 1] = nums[i];  // lower previous
-      } else {
-        nums[i] = nums[i - 1];  // raise current
-      }
-    }
-  }
-
-  return true;
-}
-
-bool checkPossibility(vector<int>& nums) {
+bool checkPossibility(const vector<int>& nums) {
   int decrease_time = 1;
   for (int i = 1; i < nums.size(); i++) {
     if (nums[i] < nums[i - 1]) {
-      // check has chance
       if (decrease_time <= 0) {
         return false;
       }
-      // check has number
       bool has_number = false;
-      // it is border
       if (i == 1 || i == nums.size() - 1) {
         has_number = true;
-      }
-      // try to change i -1
-      else if (nums[i] >= nums[i - 2]) {
+      } else if (nums[i] >= nums[i - 2]) {
         has_number = true;
-      }
-      // try to change i
-      else if (nums[i + 1] >= nums[i - 1]) {
+      } else if (nums[i + 1] >= nums[i - 1]) {
         has_number = true;
       }
 
       if (has_number) {
-        // use chance
         decrease_time -= 1;
       } else {
         return false;
@@ -86,8 +61,14 @@ bool checkPossibility(vector<int>& nums) {
   return true;
 }
 
-int main() {
-  std::vector<int> a{{3, 4, 2, 3}};
-  checkPossibility(a);
-  return 0;
+void registerTests() {
+  vector<int> nums1 = {4, 2, 3};
+  vector<int> nums2 = {4, 2, 1};
+  vector<int> nums3 = {3, 4, 2, 3};
+  bool result1 = checkPossibility(nums1);
+  bool result2 = checkPossibility(nums2);
+  bool result3 = checkPossibility(nums3);
+  test_runner.addTest("[4,2,3]=true", EXPECT_EQ(result1, true));
+  test_runner.addTest("[4,2,1]=false", EXPECT_EQ(result2, false));
+  test_runner.addTest("[3,4,2,3]=false", EXPECT_EQ(result3, false));
 }

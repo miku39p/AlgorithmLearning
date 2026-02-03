@@ -1,3 +1,5 @@
+#include "basic.h"
+#include "test.h"
 /*
 Given a non-negative integer c, decide whether there're two integers a and b
 such that a2 + b2 = c.
@@ -22,7 +24,7 @@ tag: two pointers
 note: 这题是经典双指针问题，比较简单，主要是要注意int*int 会爆掉，要么使用long,
 要么改成diff减法形式。
 */
-#include "basic.h"
+
 bool judgeSquareSum(int c) {
   int max = static_cast<int>(std::sqrt(c));
   int min = 0;
@@ -40,4 +42,9 @@ bool judgeSquareSum(int c) {
   return false;
 }
 
-int main() { judgeSquareSum(2147482647); }
+void registerTests() {
+  test_runner.addTest("5=true", EXPECT_EQ(judgeSquareSum(5), true));
+  test_runner.addTest("3=false", EXPECT_EQ(judgeSquareSum(3), false));
+  test_runner.addTest("2147482647=false",
+                      EXPECT_EQ(judgeSquareSum(2147482647), false));
+}

@@ -1,4 +1,5 @@
 #include "basic.h"
+#include "test.h"
 /*
 Given a string s, return true if the s can be palindrome after deleting at most
 one character from it.
@@ -39,10 +40,10 @@ bool val(const string& s, int left, int high) {
   }
   return true;
 }
+
 bool validPalindrome(string s) {
   int a = 0;
   int b = s.size() - 1;
-  int count = 0;
   while (a < b) {
     if (s[a] != s[b]) {
       return val(s, a + 1, b) || val(s, a, b - 1);
@@ -50,12 +51,15 @@ bool validPalindrome(string s) {
     a++;
     b--;
   }
-
   return true;
 }
 
-int main() {
-  validPalindrome("eceec");
-  validPalindrome("abca");
-  validPalindrome("ebcbbececabbacecbbcbe");
+void registerTests() {
+  test_runner.addTest("aba=true", EXPECT_EQ(validPalindrome("aba"), true));
+  test_runner.addTest("abca=true", EXPECT_EQ(validPalindrome("abca"), true));
+  test_runner.addTest("abc=false", EXPECT_EQ(validPalindrome("abc"), false));
+  test_runner.addTest("eceec=true", EXPECT_EQ(validPalindrome("eceec"), true));
+  test_runner.addTest(
+      "ebcbbececabbacecbbcbe=true",
+      EXPECT_EQ(validPalindrome("ebcbbececabbacecbbcbe"), true));
 }

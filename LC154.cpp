@@ -1,4 +1,5 @@
 #include "basic.h"
+#include "test.h"
 /*
 Suppose an array of length n sorted in ascending order is rotated between 1 and
 n times. For example, the array nums = [0,1,4,4,5,6,7] might become:
@@ -46,17 +47,9 @@ int findMin(vector<int>& nums) {
 
   while (l < r) {
     int mid = l + (r - l) / 2;
-    // 初始版本
-    // if (mid == 0 || mid == n - 1 ||
-    //     (nums[mid] <= nums[mid + 1] && nums[mid - 1] >= nums[mid])) {
-    //   return nums[mid];
-    // }
-    // in right
     if (nums[mid] > nums[r]) {
       l = mid + 1;
-    }
-    // in left
-    else if (nums[mid] < nums[r]) {
+    } else if (nums[mid] < nums[r]) {
       r = mid;
     } else {
       r -= 1;
@@ -65,7 +58,14 @@ int findMin(vector<int>& nums) {
   return nums[l];
 }
 
-int main() {
-  vector<int> a{3, 1};
-  findMin(a);
+void registerTests() {
+  vector<int> nums1 = {1, 3, 5};
+  vector<int> nums2 = {2, 2, 2, 0, 1};
+  vector<int> nums3 = {3, 1};
+  int result1 = findMin(nums1);
+  int result2 = findMin(nums2);
+  int result3 = findMin(nums3);
+  test_runner.addTest("[1,3,5]=1", EXPECT_EQ(result1, 1));
+  test_runner.addTest("[2,2,2,0,1]=0", EXPECT_EQ(result2, 0));
+  test_runner.addTest("[3,1]=1", EXPECT_EQ(result3, 1));
 }

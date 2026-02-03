@@ -1,4 +1,5 @@
 #include "basic.h"
+#include "test.h"
 /*
 You are given an array of people, people, which are the attributes of some
 people in a queue (not necessarily in order). Each people[i] = [hi, ki]
@@ -138,8 +139,10 @@ vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
   return result;
 }
 
-int main() {
-  vector<vector<int>> people = {{7, 0}, {4, 4}, {7, 1}, {5, 0}, {6, 1}, {5, 2}};
-  reconstructQueue_best_copy(people);
-  return 0;
+void registerTests() {
+  vector<vector<int>> input1 = {{7, 0}, {4, 4}, {7, 1}, {5, 0}, {6, 1}, {5, 2}};
+  vector<vector<int>> expected1 = {{5, 0}, {7, 0}, {5, 2},
+                                   {6, 1}, {4, 4}, {7, 1}};
+  auto result1 = reconstructQueue(input1);
+  test_runner.addTest("example1", EXPECT_EQ(result1, expected1));
 }
