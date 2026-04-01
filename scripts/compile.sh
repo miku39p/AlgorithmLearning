@@ -2,6 +2,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SRC_DIR="${SCRIPT_DIR}/../src"
+[ -d build ] || mkdir build
 TEST_FRAME="${SCRIPT_DIR}/../test_frame"
 
 # Compile with gdb_main.cpp as entry point, link test_runner.cpp for definitions
